@@ -40,9 +40,9 @@ export default function ParticipantView(props) {
       {webcamOn && (
         <ReactPlayer
           playsinline // very very imp prop
-          pip={false}
-          light={false}
-          controls={false}
+          pip={true}
+          light={true}
+          controls={true}
           muted={true}
           playing={true}
           url={videoStream}
