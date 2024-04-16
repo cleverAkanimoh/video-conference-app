@@ -1,14 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import {
-  MeetingProvider,
-  useMeeting,
-  useParticipant,
-} from "@videosdk.live/react-sdk";
-import ReactPlayer from "react-player";
+import { MeetingProvider } from "@videosdk.live/react-sdk";
 
-function MeetingView() {
-  return null;
-}
+import MeetingView from "./components/MeetingView";
+
 const App = () => {
   return (
     <MeetingProvider
@@ -24,4 +17,5 @@ const App = () => {
     </MeetingProvider>
   );
 };
+
 export default App;

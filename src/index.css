@@ -1,13 +1,25 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90svh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button {
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+#join-meeting-btn {
+  color: white;
+  background-color: blue;
+  padding: 1rem;
+  border-radius: 0.25rem;
+}
+
+#join-meeting-btn:hover {
+  background-color: rgba(0, 0, 255, 0.615);
 }
