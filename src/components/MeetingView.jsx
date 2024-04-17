@@ -26,12 +26,22 @@ export default function MeetingView({ meetingId, onMeetingLeave }) {
 
   const joinMeeting = () => {
     setJoined("JOINING");
-    join();
+    const joinProps = join();
+    console.log(joinProps);
+    // VideoSDK.initMeeting({
+    //   meetingId,
+    //   // name: "John Doe",
+    //   micEnabled: false,
+    //   webcamEnabled: true,
+    //   maxResolution: "hd",
+    //   multiStream: true,
+    //   mode: "CONFERENCE", // "CONFERENCE" || "VIEWER"
+    // });
   };
 
   return (
     <div className="container px-2">
-            {joined !== "JOINING" && (
+      {joined !== "JOINING" && (
         <>
           <h3 className="my-3 text-right font-bold">
             Meeting Id:{" "}

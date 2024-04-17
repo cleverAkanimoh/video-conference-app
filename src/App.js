@@ -7,6 +7,7 @@ import JoinScreen from "./components/JoinScreen";
 
 const App = () => {
   const [meetingId, setMeetingId] = useState(null);
+  const [displayName, setDisplayName] = useState(null);
 
   //Getting the meeting id by calling the api we just wrote
   const getMeetingAndToken = async (id) => {
@@ -24,16 +25,19 @@ const App = () => {
     <MeetingProvider
       config={{
         meetingId: meetingId || "lt08-ljs2-k5ps",
-        micEnabled: true,
+        micEnabled: false,
         webcamEnabled: true,
-        // name: "Clever Akanimoh",
+        name: displayName,
       }}
       token={authToken}
     >
       <MeetingView meetingId={meetingId} onMeetingLeave={onMeetingLeave} />
     </MeetingProvider>
   ) : (
-    <JoinScreen getMeetingAndToken={getMeetingAndToken} />
+    <JoinScreen
+      getMeetingAndToken={getMeetingAndToken}
+      setDisplayName={setDisplayName}
+    />
   );
 };
 

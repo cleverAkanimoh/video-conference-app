@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-export default function JoinScreen({ getMeetingAndToken }) {
-  const [meetingId, setMeetingId] = useState(null);
+export default function JoinScreen({ getMeetingAndToken, setDisplayName }) {
+  const [meetingId, setMeetingId] = useState("lt08-ljs2-k5ps");
+
   const [error, setError] = useState("");
 
   const onClick = async () => {
@@ -10,10 +11,10 @@ export default function JoinScreen({ getMeetingAndToken }) {
       return;
     }
 
-    if (meetingId !== "lt08-ljs2-k5ps") {
-      setError("please enter the correct meeting Id - lt08-ljs2-k5ps");
-      return;
-    }
+    // if (meetingId !== "lt08-ljs2-k5ps") {
+    //   setError("please enter the correct meeting Id - lt08-ljs2-k5ps");
+    //   return;
+    // }
 
     try {
       await getMeetingAndToken(meetingId);
@@ -30,17 +31,26 @@ export default function JoinScreen({ getMeetingAndToken }) {
       <h4 className="text-gray-500">
         use <span className="text-white">lt08-ljs2-k5ps</span> to join meeting
       </h4>
-      <div className="w-full space-y-1">
+      <div className="w-full">
+        <input
+          type="text"
+          className="w-full bg-transparent border border-b-0 rounded-t p-2 text-sm focus:outline-none"
+          placeholder="Enter Display Name"
+          onChange={(e) => {
+            setDisplayName(e.target.value);
+          }}
+        />
         <input
           type="text"
           id="join-input"
-          className="w-full bg-transparent border rounded p-2 text-sm"
+          value={meetingId}
+          className="w-full bg-transparent border rounded-b p-2 text-sm focus:outline-none"
           placeholder="Enter Meeting Id"
           onChange={(e) => {
             setMeetingId(e.target.value);
           }}
         />
-        <p className="text-xs text-red-600">{error}</p>
+        <p className="text-xs text-red-600 mt-1">{error}</p>
       </div>
 
       <button

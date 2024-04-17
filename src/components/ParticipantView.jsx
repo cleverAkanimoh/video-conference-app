@@ -62,7 +62,10 @@ export default function ParticipantView(props) {
 
       <p className=" max-w-[200px]">
         <span className="capitalize font-bold font-serif">
-          {displayName.substring(0, 15).concat(displayName > 15 ? "..." : "")}
+          {displayName
+            .substring(0, 15)
+            .concat(displayName > 15 ? "..." : "")
+            .toLowerCase()}
         </span>
         ({isLocal ? "host" : "guest"}) - Webcam: {webcamOn ? "ON" : "OFF"} -
         Mic: {micOn ? "ON" : "OFF"}
