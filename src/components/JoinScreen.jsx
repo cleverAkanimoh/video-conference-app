@@ -39,10 +39,10 @@ export default function JoinScreen({ setJoined, join }) {
       >
         Join
       </button>
-      {/* {" or "}
-      <button onClick={onClick} id="create-meeting-btn">
-        Create Meeting
-      </button> */}
+      {" or "}
+      <button onClick={onClick} className="hover:underline">
+        Create a Meeting
+      </button>
     </div>
   );
 }
