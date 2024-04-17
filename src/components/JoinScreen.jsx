@@ -10,10 +10,10 @@ export default function JoinScreen({ getMeetingAndToken }) {
       return;
     }
 
-    // if (meetingId !== getMeetingAndToken) {
-    //   setError("please enter the correct meeting Id");
-    //   return;
-    // }
+    if (meetingId !== "lt08-ljs2-k5ps") {
+      setError("please enter the correct meeting Id - lt08-ljs2-k5ps");
+      return;
+    }
 
     try {
       await getMeetingAndToken(meetingId);
@@ -25,7 +25,11 @@ export default function JoinScreen({ getMeetingAndToken }) {
 
   return (
     <div className="max-w-[500px] w-full flex flex-col items-center justify-center gap-4">
-      <h2 className="text-5xl font-bold mb-5">Let's Video Chat</h2>
+      <h2 className="text-5xl font-bold mb-5 text-center">Let's Video Chat</h2>
+
+      <h4 className="text-gray-500">
+        use <span className="text-white">lt08-ljs2-k5ps</span> to join meeting
+      </h4>
       <div className="w-full space-y-1">
         <input
           type="text"

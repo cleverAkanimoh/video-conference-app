@@ -47,8 +47,8 @@ export default function ParticipantView(props) {
           muted={true}
           playing={true}
           url={videoStream}
-          height={"200px"}
-          width={"200px"}
+          height={"300px"}
+          width={"300px"}
           onError={(err) => {
             console.log(err, "participant video error");
           }}

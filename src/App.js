@@ -23,10 +23,10 @@ const App = () => {
   return authToken && meetingId ? (
     <MeetingProvider
       config={{
-        meetingId: meetingId ?? "lt08-ljs2-k5ps",
+        meetingId: meetingId || "lt08-ljs2-k5ps",
         micEnabled: true,
         webcamEnabled: true,
-        name: "Clever Akanimoh",
+        // name: "Clever Akanimoh",
       }}
       token={authToken}
     >
