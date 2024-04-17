@@ -11,6 +11,7 @@ import { ArrowsPointingInIcon } from "@heroicons/react/24/outline";
 
 export default function MeetingView({ meetingId, onMeetingLeave }) {
   const [joined, setJoined] = useState(null);
+  const [error, setError] = useState("");
 
   //Get the method which will be used to join the meeting.
   //We will also get the participants list to display all participants
@@ -24,12 +25,19 @@ export default function MeetingView({ meetingId, onMeetingLeave }) {
     },
     onError: (err) => {
       console.error(err);
-    }
+    },
   });
 
   const joinMeeting = () => {
     setJoined("JOINING");
-    join();
+    try {
+      join();
+      setJoined("JOINED");
+    } catch (error) {
+      setJoined(null);
+      setError("Failed to join. Please check your network connectivity.");
+      console.error("Join Error: ", error);
+    }
     // VideoSDK.initMeeting({
     //   meetingId,
     //   // name: "John Doe",
@@ -43,6 +51,7 @@ export default function MeetingView({ meetingId, onMeetingLeave }) {
 
   return (
     <div className="container px-2">
+      <p className="my-2 text-center text-red-600 text-xs">{error}</p>
       {joined !== "JOINING" && (
         <>
           <h3 className="my-3 text-right font-bold">
