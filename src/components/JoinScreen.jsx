@@ -31,7 +31,7 @@ export default function JoinScreen({
   };
 
   return (
-    <div className="max-w-[500px] w-full flex flex-col items-center justify-center gap-4">
+    <div className="max-w-[500px] w-full flex flex-col items-center justify-center p-4 gap-4">
       <h2 className="text-5xl font-bold mb-5 text-center">Let's Video Chat</h2>
 
       <h4 className="text-gray-500">
