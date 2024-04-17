@@ -2,7 +2,7 @@ import { MeetingProvider } from "@videosdk.live/react-sdk";
 
 import MeetingView from "./components/MeetingView";
 import { authToken, createMeeting } from "./API";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import JoinScreen from "./components/JoinScreen";
 
 const App = () => {
