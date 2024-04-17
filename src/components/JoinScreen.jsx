@@ -41,7 +41,7 @@ export default function JoinScreen({
         <input
           type="text"
           id="username"
-          className="w-full bg-transparent border border-b-0 rounded-t p-2 text-sm focus:outline-none"
+          className="w-full bg-transparent border border-b-0 rounded-t p-4 text-sm focus:outline-none text-gray-400"
           placeholder="Enter Display Name"
           value={displayName}
           onChange={(e) => {
@@ -52,7 +52,7 @@ export default function JoinScreen({
           type="text"
           id="meeting-id"
           value={meetingId}
-          className="w-full bg-transparent border rounded-b p-2 text-sm focus:outline-none"
+          className="w-full bg-transparent border rounded-b p-4 text-sm focus:outline-none"
           placeholder="Enter Meeting Id"
           onChange={(e) => {
             setMeetingId(e.target.value);

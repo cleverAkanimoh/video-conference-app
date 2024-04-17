@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef } from "react";
 import { useParticipant } from "@videosdk.live/react-sdk";
 import ReactPlayer from "react-player";
+import clsx from "clsx";
 
 export default function ParticipantView(props) {
   const micRef = useRef(null);
@@ -67,15 +68,19 @@ export default function ParticipantView(props) {
         </div>
       )}
 
-      <p className=" max-w-[300px]">
-        <span className="capitalize font-bold font-serif">
+      <p className="max-w-[300px] text-sm">
+        <span
+          className={clsx("capitalize font-bold font-serif text-base", {
+            "text-blue-800": isActiveSpeaker,
+          })}
+        >
           {displayName
             .substring(0, 15)
             .concat(displayName > 15 ? "..." : "")
             .toLowerCase()}
+          ({isActiveSpeaker ? "Speaking..." : isLocal ? "you" : "other"}){" "}
         </span>
-        ({isLocal ? "you" : "other"}) {isActiveSpeaker && "speaking..."} -
-        Webcam: {webcamOn ? "ON" : "OFF"} - Mic: {micOn ? "ON" : "OFF"}
+        - Webcam: {webcamOn ? "ON" : "OFF"} - Mic: {micOn ? "ON" : "OFF"}
       </p>
     </div>
   );
