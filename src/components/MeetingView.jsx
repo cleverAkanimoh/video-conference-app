@@ -2,22 +2,14 @@ import React, { useState } from "react";
 import ParticipantView from "./ParticipantView";
 import { useMeeting } from "@videosdk.live/react-sdk";
 import JoinScreen from "./JoinScreen";
+import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/outline";
 
 export default function MeetingView() {
   const [joined, setJoined] = useState(null);
 
   //Get the method which will be used to join the meeting.
   //We will also get the participants list to display all participants
-  const {
-    join,
-    participants,
-    enableScreenShare,
-    enableWebcam,
-    disableScreenShare,
-    disableWebcam,
-    leave,
-    activeSpeakerId,
-  } = useMeeting({
+  const { join, participants } = useMeeting({
     //callback for when meeting is joined successfully
     onMeetingJoined: () => {
       setJoined("JOINED");
@@ -34,7 +26,6 @@ export default function MeetingView() {
       )}
       {joined && joined === "JOINED" ? (
         <div>
-          <Controls />
           {/* For rendering all the participants in the meeting */}
           {[...participants.keys()].map((participantId) => (
             <ParticipantView
@@ -42,6 +33,7 @@ export default function MeetingView() {
               key={participantId}
             />
           ))}
+          <Controls />
         </div>
       ) : joined && joined === "JOINING" ? (
         <p className="text-lg">Joining the meeting...</p>
@@ -61,23 +53,44 @@ function Controls() {
     enableScreenShare,
   } = useMeeting();
   return (
-    <div className="flex gap-2 flex-wrap">
-      <ControlBtn fn={() => leave()} text="Leave" />
-      <ControlBtn fn={() => toggleMic()} text="toggleMic" />
-      <ControlBtn fn={() => toggleWebcam()} text="toggleWebcam" />
-      <ControlBtn fn={() => toggleScreenShare()} text="toggleScreenShare" />
-      <ControlBtn fn={() => enableScreenShare()} text="enableScreenShare" />
+    <div className="mt-3 flex gap-2 flex-wrap">
+      <ControlBtn
+        fn={() => leave()}
+        text="Leave"
+        Icon={ArrowLeftEndOnRectangleIcon}
+      />
+      <ControlBtn
+        fn={() => toggleMic()}
+        text="toggleMic"
+        Icon={ArrowLeftEndOnRectangleIcon}
+      />
+      <ControlBtn
+        fn={() => toggleWebcam()}
+        text="toggleWebcam"
+        Icon={ArrowLeftEndOnRectangleIcon}
+      />
+      <ControlBtn
+        fn={() => toggleScreenShare()}
+        text="toggleScreenShare"
+        Icon={ArrowLeftEndOnRectangleIcon}
+      />
+      <ControlBtn
+        fn={() => enableScreenShare()}
+        text="enableScreenShare"
+        Icon={ArrowLeftEndOnRectangleIcon}
+      />
     </div>
   );
 }
 
-const ControlBtn = ({ text, fn }) => {
+const ControlBtn = ({ text, fn, Icon }) => {
   return (
     <button
       onClick={() => fn()}
-      className="bg-white text-black hover:bg-gray-300 min-w-20 rounded p-2 text-sm inline-grid place-items-center capitalize transition-colors duration-300"
+      className="bg-white text-black hover:bg-gray-300 min-w-14 rounded p-2 text-sm inline-flex justify-center items-center capitalize transition-all duration-300 group"
     >
-      {text}
+      <Icon className="w-5" />
+      <span className="hiddn">{text}</span>
     </button>
   );
 };
