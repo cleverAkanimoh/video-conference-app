@@ -22,6 +22,9 @@ export default function MeetingView({ meetingId, onMeetingLeave }) {
     onMeetingLeft: () => {
       onMeetingLeave();
     },
+    onError: (err) => {
+      console.error(err);
+    }
   });
 
   const joinMeeting = () => {
