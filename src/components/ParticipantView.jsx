@@ -4,6 +4,7 @@ import ReactPlayer from "react-player";
 
 export default function ParticipantView(props) {
   const micRef = useRef(null);
+  //   const webcamRef = useRef(null);
 
   const { webcamStream, micStream, webcamOn, micOn, isLocal, displayName } =
     useParticipant(props.participantId);
@@ -35,14 +36,14 @@ export default function ParticipantView(props) {
   }, [micStream, micOn]);
 
   return (
-    <div>
+    <div className="min-h-[300px] flex flex-col">
       <audio ref={micRef} autoPlay playsInline muted={isLocal} />
-      {webcamOn && (
+      {webcamOn ? (
         <ReactPlayer
           playsinline // very very imp prop
-          pip={true}
-          light={true}
-          controls={true}
+          pip={false}
+          light={false}
+          controls={false}
           muted={true}
           playing={true}
           url={videoStream}
@@ -52,9 +53,18 @@ export default function ParticipantView(props) {
             console.log(err, "participant video error");
           }}
         />
+      ) : (
+        <div className="w-full flex flex-col gap-2 items-center justify-center h-[250px] bg-black text-white my-2">
+          <div className="size-10 bg-white rounded-full" />
+          <span className="font-bold capitalize text-lg">no video</span>
+        </div>
       )}
 
-      <div>{displayName}</div>
+      <p>
+        Participant:{" "}
+        <span className="capitalize font-bold font-serif">{displayName}</span> |
+        Webcam: {webcamOn ? "ON" : "OFF"} | Mic: {micOn ? "ON" : "OFF"}
+      </p>
     </div>
   );
 }
