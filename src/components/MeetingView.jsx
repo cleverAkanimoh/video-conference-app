@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import ParticipantView from "./ParticipantView";
+import { useParticipant } from "@videosdk.live/react-sdk";
 import { useMeeting } from "@videosdk.live/react-sdk";
-import JoinScreen from "./JoinScreen";
 import {
   ArrowLeftEndOnRectangleIcon,
   CameraIcon,
   MicrophoneIcon,
   PresentationChartBarIcon,
 } from "@heroicons/react/24/outline";
+import { ArrowsPointingInIcon } from "@heroicons/react/24/outline";
 
-export default function MeetingView() {
+export default function MeetingView({ meetingId, onMeetingLeave }) {
   const [joined, setJoined] = useState(null);
 
   //Get the method which will be used to join the meeting.
@@ -20,17 +21,24 @@ export default function MeetingView() {
       setJoined("JOINED");
     },
     onMeetingLeft: () => {
-      setJoined(null);
+      onMeetingLeave();
     },
   });
+
+  const joinMeeting = () => {
+    setJoined("JOINING");
+    join();
+  };
 
   return (
     <div className="container px-2">
       {joined !== "JOINING" && (
         <>
-          <h2 className="text-5xl font-bold mb-5">Let's Video Chat</h2>
           <h3 className="my-3 text-right font-bold">
-            Meeting Id: lt08-ljs2-k5ps
+            Meeting Id:{" "}
+            <span className="text-blue-600 font-semibold font-serif ml-1">
+              {meetingId}
+            </span>
           </h3>
         </>
       )}
@@ -52,11 +60,31 @@ export default function MeetingView() {
           <div className="size-6 rounded-full border-b-2 border border-gray-300 border-b-white animate-spin" />
         </div>
       ) : (
-        <JoinScreen join={join} setJoined={setJoined} />
+        <JoinOptions joinMeeting={joinMeeting} />
       )}
     </div>
   );
 }
+
+const JoinOptions = ({ joinMeeting }) => {
+  const { leave, toggleMic, toggleWebcam } = useMeeting();
+  return (
+    <div className="flex items-center justify-center gap-4">
+      <ControlBtn
+        fn={() => joinMeeting()}
+        text="Join"
+        Icon={ArrowsPointingInIcon}
+      />
+      <ControlBtn fn={() => toggleMic()} text="Mic" Icon={MicrophoneIcon} />
+      <ControlBtn fn={() => toggleWebcam()} text="Webcam" Icon={CameraIcon} />
+      <ControlBtn
+        fn={() => leave()}
+        text="Cancel"
+        Icon={ArrowLeftEndOnRectangleIcon}
+      />
+    </div>
+  );
+};
 
 function Controls() {
   const { leave, toggleMic, toggleWebcam, toggleScreenShare } = useMeeting();
@@ -85,7 +113,7 @@ const ControlBtn = ({ text, fn, Icon }) => {
       className="bg-white text-black hover:bg-gray-300 min-w-14 rounded p-2 text-sm inline-flex justify-center items-center capitalize transition-all duration-300 group"
     >
       <Icon className="w-5" />
-      <span className="hidden group-hover:flex">{text}</span>
+      <span className="hidden sm:flex group-hover:flex ml-2">{text}</span>
     </button>
   );
 };

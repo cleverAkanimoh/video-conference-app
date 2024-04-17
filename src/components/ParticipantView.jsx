@@ -54,16 +54,18 @@ export default function ParticipantView(props) {
           }}
         />
       ) : (
-        <div className="w-full flex flex-col gap-2 items-center justify-center h-[150px] bg-black text-white my-2">
+        <div className="w-full flex flex-col gap-2 items-center justify-center h-[190px] bg-black text-white my-2">
           <div className="size-10 bg-white rounded-full" />
           <span className="font-bold capitalize text-lg">no video</span>
         </div>
       )}
 
-      <p className="text-wrap">
-        <span className="capitalize font-bold font-serif">{displayName}</span>(
-        {isLocal ? "host" : "guest"}) - Webcam: {webcamOn ? "ON" : "OFF"} - Mic:{" "}
-        {micOn ? "ON" : "OFF"}
+      <p className=" max-w-[200px]">
+        <span className="capitalize font-bold font-serif">
+          {displayName.substring(0, 15).concat(displayName > 15 ? "..." : "")}
+        </span>
+        ({isLocal ? "host" : "guest"}) - Webcam: {webcamOn ? "ON" : "OFF"} -
+        Mic: {micOn ? "ON" : "OFF"}
       </p>
     </div>
   );

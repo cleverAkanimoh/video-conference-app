@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function JoinScreen({ setJoined, join }) {
+export default function JoinScreen({ getMeetingAndToken }) {
   const [meetingId, setMeetingId] = useState(null);
   const [error, setError] = useState("");
 
@@ -10,21 +10,27 @@ export default function JoinScreen({ setJoined, join }) {
       return;
     }
 
-    if (meetingId !== "lt08-ljs2-k5ps") {
-      setError("please enter the correct meeting Id");
-      return;
+    // if (meetingId !== getMeetingAndToken) {
+    //   setError("please enter the correct meeting Id");
+    //   return;
+    // }
+
+    try {
+      await getMeetingAndToken(meetingId);
+    } catch (error) {
+      setError("An Unknown Error occurred");
+      console.error("Failed to create meeting ", error);
     }
-    setJoined("JOINING");
-    join();
   };
 
   return (
-    <div className="max-w-[500px] flex flex-col items-center justify-center gap-4">
+    <div className="max-w-[500px] w-full flex flex-col items-center justify-center gap-4">
+      <h2 className="text-5xl font-bold mb-5">Let's Video Chat</h2>
       <div className="w-full space-y-1">
         <input
           type="text"
           id="join-input"
-          className="w-full  rounded p-2 text-sm"
+          className="w-full bg-transparent border rounded p-2 text-sm"
           placeholder="Enter Meeting Id"
           onChange={(e) => {
             setMeetingId(e.target.value);

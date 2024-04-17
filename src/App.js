@@ -1,20 +1,39 @@
 import { MeetingProvider } from "@videosdk.live/react-sdk";
 
 import MeetingView from "./components/MeetingView";
+import { authToken, createMeeting } from "./API";
+import { useEffect, useState } from "react";
+import JoinScreen from "./components/JoinScreen";
 
 const App = () => {
-  return (
+  const [meetingId, setMeetingId] = useState(null);
+
+  //Getting the meeting id by calling the api we just wrote
+  const getMeetingAndToken = async (id) => {
+    const meetingId =
+      id == null ? await createMeeting({ token: authToken }) : id;
+    setMeetingId(meetingId);
+  };
+
+  //This will set Meeting Id to null when meeting is left or ended
+  const onMeetingLeave = () => {
+    setMeetingId(null);
+  };
+
+  return authToken && meetingId ? (
     <MeetingProvider
       config={{
-        meetingId: "lt08-ljs2-k5ps",
+        meetingId: meetingId ?? "lt08-ljs2-k5ps",
         micEnabled: true,
         webcamEnabled: true,
         name: "Clever Akanimoh",
       }}
-      token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiJlNzA1M2NmNS03YTE1LTQ0M2ItYTU3Zi00YjBjYmQ2ZDUwMWIiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTcxMzMwNjMwMSwiZXhwIjoxNzEzMzkyNzAxfQ.IBFXoIg53zxNEo2Z4_CRJ0KnRGm9gwicUhzaiBjht4I"
+      token={authToken}
     >
-      <MeetingView />
+      <MeetingView meetingId={meetingId} onMeetingLeave={onMeetingLeave} />
     </MeetingProvider>
+  ) : (
+    <JoinScreen getMeetingAndToken={getMeetingAndToken} />
   );
 };
 
