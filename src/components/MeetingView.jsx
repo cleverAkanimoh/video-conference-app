@@ -35,8 +35,9 @@ export default function MeetingView() {
         </>
       )}
       {joined && joined === "JOINED" ? (
-        <div>
+        <div className="flex gap-4 flex-wrap items-center justify-center">
           {/* For rendering all the participants in the meeting */}
+
           {[...participants.keys()].map((participantId) => (
             <ParticipantView
               participantId={participantId}
@@ -60,7 +61,7 @@ export default function MeetingView() {
 function Controls() {
   const { leave, toggleMic, toggleWebcam, toggleScreenShare } = useMeeting();
   return (
-    <div className="mt-3 flex gap-2 flex-wrap items-center justify-center">
+    <div className="fixed bottom-0 left-0 min-h-10 w-screen bg-black bg-opacity-30 backdrop-blur-md p-2 py-4 flex gap-2 flex-wrap items-center justify-center ">
       <ControlBtn
         fn={() => leave()}
         text="Leave call"

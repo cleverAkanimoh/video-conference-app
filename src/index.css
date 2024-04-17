@@ -9,4 +9,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100svh;
+  padding: 2rem 0 10rem;
+  scroll-behavior: smooth;
 }

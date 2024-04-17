@@ -47,20 +47,20 @@ export default function ParticipantView(props) {
           muted={true}
           playing={true}
           url={videoStream}
-          height={"300px"}
-          width={"300px"}
+          height={"200px"}
+          width={"200px"}
           onError={(err) => {
             console.log(err, "participant video error");
           }}
         />
       ) : (
-        <div className="w-full flex flex-col gap-2 items-center justify-center h-[250px] bg-black text-white my-2">
+        <div className="w-full flex flex-col gap-2 items-center justify-center h-[150px] bg-black text-white my-2">
           <div className="size-10 bg-white rounded-full" />
           <span className="font-bold capitalize text-lg">no video</span>
         </div>
       )}
 
-      <p>
+      <p className="text-wrap">
         <span className="capitalize font-bold font-serif">{displayName}</span>(
         {isLocal ? "host" : "guest"}) - Webcam: {webcamOn ? "ON" : "OFF"} - Mic:{" "}
         {micOn ? "ON" : "OFF"}
