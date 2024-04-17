@@ -7,9 +7,11 @@ import JoinScreen from "./components/JoinScreen";
 
 const App = () => {
   const [meetingId, setMeetingId] = useState(null);
-  const [displayName, setDisplayName] = useState(null);
-
-  localStorage.setItem("username", displayName);
+  const [displayName, setDisplayName] = useState(
+    localStorage.getItem("username") !== null
+      ? localStorage.getItem("username")
+      : undefined
+  );
 
   //Getting the meeting id by calling the api we just wrote
   const getMeetingAndToken = async (id) => {
@@ -42,6 +44,7 @@ const App = () => {
     <JoinScreen
       getMeetingAndToken={getMeetingAndToken}
       setDisplayName={setDisplayName}
+      displayName={displayName}
     />
   );
 };

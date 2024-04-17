@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function JoinScreen({ getMeetingAndToken, setDisplayName }) {
+export default function JoinScreen({
+  getMeetingAndToken,
+  setDisplayName,
+  displayName,
+}) {
   const [meetingId, setMeetingId] = useState("lt08-ljs2-k5ps");
 
   const [error, setError] = useState("");
@@ -15,6 +19,8 @@ export default function JoinScreen({ getMeetingAndToken, setDisplayName }) {
     //   setError("please enter the correct meeting Id - lt08-ljs2-k5ps");
     //   return;
     // }
+
+    localStorage.setItem("username", displayName);
 
     try {
       await getMeetingAndToken(meetingId);
@@ -36,11 +42,7 @@ export default function JoinScreen({ getMeetingAndToken, setDisplayName }) {
           type="text"
           className="w-full bg-transparent border border-b-0 rounded-t p-2 text-sm focus:outline-none"
           placeholder="Enter Display Name"
-          value={
-            localStorage.getItem("username")
-              ? localStorage.getItem("username")
-              : ""
-          }
+          value={displayName}
           onChange={(e) => {
             setDisplayName(e.target.value);
           }}
