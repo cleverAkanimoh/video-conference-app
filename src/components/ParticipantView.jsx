@@ -74,8 +74,8 @@ export default function ParticipantView(props) {
             .concat(displayName > 15 ? "..." : "")
             .toLowerCase()}
         </span>
-        ({isLocal ? "host" : "guest"}) - Webcam: {webcamOn ? "ON" : "OFF"} -
-        Mic: {micOn ? "ON" : "OFF"} - {isActiveSpeaker ? "speaking..." : ""}
+        ({isActiveSpeaker ? "speaking..." : ""}) - Webcam:{" "}
+        {webcamOn ? "ON" : "OFF"} - Mic: {micOn ? "ON" : "OFF"}
       </p>
     </div>
   );
