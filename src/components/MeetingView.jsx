@@ -36,7 +36,7 @@ export default function MeetingView({ meetingId, onMeetingLeave }) {
           <h3 className="my-3 text-right font-bold">
             Meeting Id:{" "}
             <span className="text-blue-600 font-semibold font-serif ml-1">
-              {meetingId}
+              {meetingId ?? "lt08-ljs2-k5ps"}
             </span>
           </h3>
         </>
