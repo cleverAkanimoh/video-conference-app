@@ -5,7 +5,6 @@ import JoinScreen from "./JoinScreen";
 import {
   ArrowLeftEndOnRectangleIcon,
   CameraIcon,
-  CursorArrowRippleIcon,
   MicrophoneIcon,
   PresentationChartBarIcon,
 } from "@heroicons/react/24/outline";
