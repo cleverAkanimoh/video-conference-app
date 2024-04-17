@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import ParticipantView from "./ParticipantView";
 import { useMeeting } from "@videosdk.live/react-sdk";
 import JoinScreen from "./JoinScreen";
-import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowLeftEndOnRectangleIcon,
+  CameraIcon,
+  CursorArrowRippleIcon,
+  MicrophoneIcon,
+  PresentationChartBarIcon,
+} from "@heroicons/react/24/outline";
 
 export default function MeetingView() {
   const [joined, setJoined] = useState(null);
@@ -22,7 +28,9 @@ export default function MeetingView() {
   return (
     <div className="container max-[480px]:w-screen px-2">
       {joined !== "JOINING" && (
-        <h3 className="my-3">Meeting Id: lt08-ljs2-k5ps</h3>
+        <h3 className="my-3 text-right font-bold">
+          Meeting Id: lt08-ljs2-k5ps
+        </h3>
       )}
       {joined && joined === "JOINED" ? (
         <div>
@@ -36,7 +44,10 @@ export default function MeetingView() {
           <Controls />
         </div>
       ) : joined && joined === "JOINING" ? (
-        <p className="text-lg">Joining the meeting...</p>
+        <div className="flex gap-3 items-center justify-center">
+          <p className="text-lg text-center">Joining the meeting... </p>
+          <div className="size-6 rounded-full border-b-2 border border-gray-300 border-b-white animate-spin" />
+        </div>
       ) : (
         <JoinScreen join={join} setJoined={setJoined} />
       )}
@@ -45,39 +56,20 @@ export default function MeetingView() {
 }
 
 function Controls() {
-  const {
-    leave,
-    toggleMic,
-    toggleWebcam,
-    toggleScreenShare,
-    enableScreenShare,
-  } = useMeeting();
+  const { leave, toggleMic, toggleWebcam, toggleScreenShare } = useMeeting();
   return (
-    <div className="mt-3 flex gap-2 flex-wrap">
+    <div className="mt-3 flex gap-2 flex-wrap items-center justify-center">
       <ControlBtn
         fn={() => leave()}
-        text="Leave"
+        text="Leave call"
         Icon={ArrowLeftEndOnRectangleIcon}
       />
-      <ControlBtn
-        fn={() => toggleMic()}
-        text="toggleMic"
-        Icon={ArrowLeftEndOnRectangleIcon}
-      />
-      <ControlBtn
-        fn={() => toggleWebcam()}
-        text="toggleWebcam"
-        Icon={ArrowLeftEndOnRectangleIcon}
-      />
+      <ControlBtn fn={() => toggleMic()} text="Mic" Icon={MicrophoneIcon} />
+      <ControlBtn fn={() => toggleWebcam()} text="Webcam" Icon={CameraIcon} />
       <ControlBtn
         fn={() => toggleScreenShare()}
-        text="toggleScreenShare"
-        Icon={ArrowLeftEndOnRectangleIcon}
-      />
-      <ControlBtn
-        fn={() => enableScreenShare()}
-        text="enableScreenShare"
-        Icon={ArrowLeftEndOnRectangleIcon}
+        text="Present"
+        Icon={PresentationChartBarIcon}
       />
     </div>
   );
@@ -90,7 +82,7 @@ const ControlBtn = ({ text, fn, Icon }) => {
       className="bg-white text-black hover:bg-gray-300 min-w-14 rounded p-2 text-sm inline-flex justify-center items-center capitalize transition-all duration-300 group"
     >
       <Icon className="w-5" />
-      <span className="hiddn">{text}</span>
+      <span className="hidden group-hover:flex">{text}</span>
     </button>
   );
 };

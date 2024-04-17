@@ -36,7 +36,7 @@ export default function ParticipantView(props) {
   }, [micStream, micOn]);
 
   return (
-    <div className="min-h-[300px] flex flex-col">
+    <div className="min-h-[300px] flex flex-col items-center justify-center">
       <audio ref={micRef} autoPlay playsInline muted={isLocal} />
       {webcamOn ? (
         <ReactPlayer
@@ -61,9 +61,8 @@ export default function ParticipantView(props) {
       )}
 
       <p>
-        Participant:{" "}
         <span className="capitalize font-bold font-serif">{displayName}</span>(
-        {isLocal ? "host" : "guest"}) | Webcam: {webcamOn ? "ON" : "OFF"} | Mic:{" "}
+        {isLocal ? "host" : "guest"}) - Webcam: {webcamOn ? "ON" : "OFF"} - Mic:{" "}
         {micOn ? "ON" : "OFF"}
       </p>
     </div>
