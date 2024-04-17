@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ParticipantView from "./ParticipantView";
-import { useParticipant } from "@videosdk.live/react-sdk";
 import { useMeeting } from "@videosdk.live/react-sdk";
 import {
   ArrowLeftEndOnRectangleIcon,
