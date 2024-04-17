@@ -26,11 +26,14 @@ export default function MeetingView() {
   });
 
   return (
-    <div className="container max-[480px]:w-screen px-2">
+    <div className="container px-2">
       {joined !== "JOINING" && (
-        <h3 className="my-3 text-right font-bold">
-          Meeting Id: lt08-ljs2-k5ps
-        </h3>
+        <>
+          <h2 className="text-5xl font-bold mb-5">Let's Video Chat</h2>
+          <h3 className="my-3 text-right font-bold">
+            Meeting Id: lt08-ljs2-k5ps
+          </h3>
+        </>
       )}
       {joined && joined === "JOINED" ? (
         <div>
