@@ -36,6 +36,11 @@ export default function JoinScreen({ getMeetingAndToken, setDisplayName }) {
           type="text"
           className="w-full bg-transparent border border-b-0 rounded-t p-2 text-sm focus:outline-none"
           placeholder="Enter Display Name"
+          value={
+            localStorage.getItem("username")
+              ? localStorage.getItem("username")
+              : ""
+          }
           onChange={(e) => {
             setDisplayName(e.target.value);
           }}

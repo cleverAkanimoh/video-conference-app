@@ -9,6 +9,8 @@ const App = () => {
   const [meetingId, setMeetingId] = useState(null);
   const [displayName, setDisplayName] = useState(null);
 
+  localStorage.setItem("username", displayName);
+
   //Getting the meeting id by calling the api we just wrote
   const getMeetingAndToken = async (id) => {
     const meetingId =
