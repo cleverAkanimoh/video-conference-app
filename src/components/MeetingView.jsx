@@ -28,7 +28,7 @@ export default function MeetingView() {
   });
 
   return (
-    <div className="container">
+    <div className="container max-[480px]:w-screen px-2">
       {joined !== "JOINING" && (
         <h3 className="my-3">Meeting Id: lt08-ljs2-k5ps</h3>
       )}
@@ -53,12 +53,20 @@ export default function MeetingView() {
 }
 
 function Controls() {
-  const { leave, toggleMic, toggleWebcam } = useMeeting();
+  const {
+    leave,
+    toggleMic,
+    toggleWebcam,
+    toggleScreenShare,
+    enableScreenShare,
+  } = useMeeting();
   return (
-    <div className="space-x-3">
+    <div className="flex gap-2 flex-wrap">
       <ControlBtn fn={() => leave()} text="Leave" />
       <ControlBtn fn={() => toggleMic()} text="toggleMic" />
       <ControlBtn fn={() => toggleWebcam()} text="toggleWebcam" />
+      <ControlBtn fn={() => toggleScreenShare()} text="toggleScreenShare" />
+      <ControlBtn fn={() => enableScreenShare()} text="enableScreenShare" />
     </div>
   );
 }
@@ -67,7 +75,7 @@ const ControlBtn = ({ text, fn }) => {
   return (
     <button
       onClick={() => fn()}
-      className="bg-white hover:bg-gray-300 min-w-20 rounded p-2 text-sm inline-grid place-items-center capitalize transition-colors duration-300"
+      className="bg-white text-black hover:bg-gray-300 min-w-20 rounded p-2 text-sm inline-grid place-items-center capitalize transition-colors duration-300"
     >
       {text}
     </button>

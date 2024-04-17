@@ -19,12 +19,12 @@ export default function JoinScreen({ setJoined, join }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
+    <div className="max-w-[500px] flex flex-col items-center justify-center gap-4">
       <div className="w-full space-y-1">
         <input
           type="text"
           id="join-input"
-          className="w-full rounded p-2 text-sm"
+          className="w-full  rounded p-2 text-sm"
           placeholder="Enter Meeting Id"
           onChange={(e) => {
             setMeetingId(e.target.value);
@@ -35,14 +35,14 @@ export default function JoinScreen({ setJoined, join }) {
 
       <button
         onClick={onClick}
-        className="min-w-full bg-blue-600 hover:bg-blue-400 text-white rounded"
+        className="min-w-full bg-blue-600 hover:bg-blue-400 p-2 text-white rounded"
       >
         Join
       </button>
-      {" or "}
+      {/* {" or "}
       <button onClick={onClick} id="create-meeting-btn">
         Create Meeting
-      </button>
+      </button> */}
     </div>
   );
 }

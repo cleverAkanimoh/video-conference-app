@@ -3,27 +3,10 @@
 @tailwind utilities;
 
 body {
-  background-color: aquamarine;
+  background-color: black;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90svh;
-}
-
-button {
-  border: 0;
-  outline: none;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-#join-meeting-btn {
-  color: white;
-  background-color: blue;
-  padding: 1rem;
-  border-radius: 0.25rem;
-}
-
-#join-meeting-btn:hover {
-  background-color: rgba(0, 0, 255, 0.615);
+  min-height: 100svh;
 }

@@ -62,8 +62,9 @@ export default function ParticipantView(props) {
 
       <p>
         Participant:{" "}
-        <span className="capitalize font-bold font-serif">{displayName}</span> |
-        Webcam: {webcamOn ? "ON" : "OFF"} | Mic: {micOn ? "ON" : "OFF"}
+        <span className="capitalize font-bold font-serif">{displayName}</span>(
+        {isLocal ? "host" : "guest"}) | Webcam: {webcamOn ? "ON" : "OFF"} | Mic:{" "}
+        {micOn ? "ON" : "OFF"}
       </p>
     </div>
   );
