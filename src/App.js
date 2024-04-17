@@ -32,6 +32,7 @@ const App = () => {
       }}
       token={authToken}
       // joinWithoutUserInteraction
+      // reinitialiseMeetingOnConfigChange
     >
       <MeetingView meetingId={meetingId} onMeetingLeave={onMeetingLeave} />
     </MeetingProvider>
