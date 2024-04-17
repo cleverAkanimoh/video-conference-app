@@ -25,11 +25,13 @@ const App = () => {
     <MeetingProvider
       config={{
         meetingId: meetingId || "lt08-ljs2-k5ps",
-        micEnabled: false,
-        webcamEnabled: true,
+        micEnabled: true,
+        webcamEnabled: false,
         name: displayName,
+        multiStream: true,
       }}
       token={authToken}
+      // joinWithoutUserInteraction
     >
       <MeetingView meetingId={meetingId} onMeetingLeave={onMeetingLeave} />
     </MeetingProvider>

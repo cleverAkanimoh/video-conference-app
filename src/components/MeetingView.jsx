@@ -26,8 +26,7 @@ export default function MeetingView({ meetingId, onMeetingLeave }) {
 
   const joinMeeting = () => {
     setJoined("JOINING");
-    const joinProps = join();
-    console.log(joinProps);
+    join();
     // VideoSDK.initMeeting({
     //   meetingId,
     //   // name: "John Doe",

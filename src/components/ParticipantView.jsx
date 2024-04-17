@@ -6,8 +6,15 @@ export default function ParticipantView(props) {
   const micRef = useRef(null);
   //   const webcamRef = useRef(null);
 
-  const { webcamStream, micStream, webcamOn, micOn, isLocal, displayName } =
-    useParticipant(props.participantId);
+  const {
+    webcamStream,
+    micStream,
+    webcamOn,
+    micOn,
+    isLocal,
+    displayName,
+    isActiveSpeaker,
+  } = useParticipant(props.participantId);
 
   const videoStream = useMemo(() => {
     if (webcamOn && webcamStream) {
@@ -68,7 +75,7 @@ export default function ParticipantView(props) {
             .toLowerCase()}
         </span>
         ({isLocal ? "host" : "guest"}) - Webcam: {webcamOn ? "ON" : "OFF"} -
-        Mic: {micOn ? "ON" : "OFF"}
+        Mic: {micOn ? "ON" : "OFF"} - {isActiveSpeaker ? "speaking..." : ""}
       </p>
     </div>
   );
