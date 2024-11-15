@@ -1,7 +1,7 @@
 import { useMeeting, usePubSub } from "@videosdk.live/react-sdk";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { v4 as uuid } from "uuid";
+// import { v4 as v4Uuid } from "uuid";
 import useIsMobile from "../../../hooks/useIsMobile";
 import useIsTab from "../../../hooks/useIsTab";
 import { useMeetingAppContext } from "../../../MeetingAppContextDef";
@@ -15,6 +15,10 @@ export const secondsToMinutes = (time) => {
     .toString()
     .padStart(2, "0");
   return minutes + " : " + seconds;
+};
+
+export const generateRandomString = () => {
+  return Math.random * 900 * 900;
 };
 
 const Poll = ({ poll, isDraft, publishDraftPoll }) => {
@@ -285,7 +289,7 @@ const PollList = ({ panelHeight }) => {
                     //
                     publishCreatePoll(
                       {
-                        id: uuid(),
+                        id: generateRandomString(),
                         question: poll.question,
                         options: poll.options,
                         timeout: poll.timeout,

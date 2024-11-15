@@ -1,10 +1,11 @@
 import { useMemo, useRef, useState } from "react";
-import { v4 as uuid } from "uuid";
+// import { v4 as uuid } from "uuid";
 import { usePubSub } from "@videosdk.live/react-sdk";
 import { sideBarModes } from "../../../utils/common";
 import { Input, Label } from "@windmill/react-ui";
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import { useMeetingAppContext } from "../../../MeetingAppContextDef";
+import { generateRandomString } from "./PollList";
 
 const CreatePollPart = ({
   isMarkAsCorrectChecked,
@@ -201,7 +202,7 @@ const CreatePollPart = ({
               value={option.option}
               onChange={(e) =>
                 setOption({
-                  optionId: uuid(),
+                  optionId: generateRandomString(),
                   option: e.target.value,
                   isCorrect: !!option.isCorrect,
                 })
@@ -406,7 +407,7 @@ const PollButtonPart = ({
           if (isValid) {
             publishDraftPoll(
               {
-                id: uuid(),
+                id: generateRandomString(),
                 question: question.trim(),
                 options: options.map((option) => ({
                   ...option,
@@ -441,7 +442,7 @@ const PollButtonPart = ({
           if (isValid) {
             publishCreatePoll(
               {
-                id: uuid(),
+                id: generateRandomString(),
                 question: question.trim(),
                 options: options.map((option) => ({
                   ...option,
@@ -472,7 +473,7 @@ const CreatePoll = ({ panelHeight }) => {
   const [questionErr, setQuestionErr] = useState(false);
   const [optionErr, setOptionErr] = useState(false);
   const [option, setOption] = useState({
-    optionId: uuid(),
+    optionId: generateRandomString(),
     option: null,
     isCorrect: false,
   });
