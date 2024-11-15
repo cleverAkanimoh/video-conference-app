@@ -281,7 +281,7 @@ export function ILSContainer({
       participantRaisedHand(senderId);
     },
   });
-
+  // chat feature here
   usePubSub("CHAT", {
     onMessageReceived: (data) => {
       const localParticipantId = mMeeting?.localParticipant?.id;
